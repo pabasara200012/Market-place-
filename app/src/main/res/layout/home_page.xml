@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:padding="16dp">
+
+    <!-- Search Bar -->
+    <EditText
+        android:id="@+id/searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Search vehicles"
+        android:background="@drawable/search_bar_background"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="#000000"
+        android:textColorHint="#888888"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="8dp"
+        android:singleLine="true"
+        android:imeOptions="actionSearch"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Promotional Banner -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@drawable/promotional_banner_bg"
+        android:layout_marginBottom="16dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/welcome_nextgen_garage"
+            android:contentDescription="Promotional banner"
+            android:background="@drawable/rounded_bg"
+            android:clipToOutline="true" />
+
+
+        <LinearLayout
+            android:layout_width="214dp"
+            android:layout_height="111dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="165dp"
+            android:layout_marginBottom="56dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NextGen garaGe "
+                android:textColor="#FFFDFD"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:layout_width="174dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Exclusive Vehicle Collection"
+                android:textColor="#FFFEFE"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- Brands Horizontal List -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <ImageView
+            android:id="@+id/toyotaBrand"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_toyota"
+            android:padding="8dp" />
+
+        <ImageView
+            android:id="@+id/nissanBrand"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_nissan"
+            android:padding="8dp" />
+
+        <ImageView
+            android:id="@+id/bydBrand"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_byd"
+            android:padding="8dp" />
+
+        <ImageView
+            android:id="@+id/bmwBrand"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_bmw"
+            android:padding="8dp" />
+
+        <ImageView
+            android:id="@+id/benzBrand"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_benz"
+            android:padding="8dp" />
+    </LinearLayout>
+
+    <!-- Today's Sale Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome NextGen Garage!"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#000000" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/seeAllText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="See All"
+            android:textSize="14sp"
+            android:textColor="#1A73E8" />
+    </LinearLayout>
+
+    <!-- Vehicles Grid Layout -->
+    <GridView
+        android:id="@+id/vehiclesGridView"
+        android:layout_width="match_parent"
+        android:layout_height="325dp"
+        android:layout_weight="1"
+        android:horizontalSpacing="12dp"
+        android:numColumns="2"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="12dp" />
+</LinearLayout>

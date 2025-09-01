@@ -1,0 +1,8 @@
+<!-- res/drawable/login_button_gradient.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:startColor="#28f19d"
+        android:endColor="#04a5f5"
+        android:angle="90" />
+    <corners android:radius="10dp" />
+</shape>
