@@ -12,6 +12,8 @@ firebaseAuth = "23.2.1"
 firebaseDatabase = "21.0.0"
 firebaseFirestore = "26.0.0"
 firebaseStorage = "22.0.0"
+common = "0.10.0"
+firebaseAi = "17.2.0"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -25,6 +27,8 @@ firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 firebase-storage = { group = "com.google.firebase", name = "firebase-storage", version.ref = "firebaseStorage" }
+common = { group = "com.google.ai.client.generativeai", name = "common", version.ref = "common" }
+firebase-ai = { group = "com.google.firebase", name = "firebase-ai", version.ref = "firebaseAi" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

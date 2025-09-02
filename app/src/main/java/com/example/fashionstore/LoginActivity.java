@@ -2,6 +2,7 @@ package com.example.fashionstore;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -25,8 +26,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        userNameEditText = findViewById(R.id.edUserName);
-        passwordEditText = findViewById(R.id.edPassword);
+        userNameEditText = findViewById(R.id.uUsername);
+        passwordEditText = findViewById(R.id.loginPassword);
         loginButton = findViewById(R.id.loginButton);
         signUpTextView = findViewById(R.id.navigateSignUp);
 

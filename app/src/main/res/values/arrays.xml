@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="vehicle_types">
+        <item>Car</item>
+        <item>SUV</item>
+        <item>Van</item>
+        <item>Crossover</item>
+        <item>Hatchback</item>
+        <item>Sedan</item>
+        <item>MPV</item>
+        <item>Pickup Truck</item>
+    </string-array>
+
+    <string-array name="use_cases">
+        <item>Personal Use</item>
+        <item>Family Vehicle</item>
+        <item>Business/Commercial</item>
+        <item>Taxi/Ride Sharing</item>
+        <item>Tourism/Rental</item>
+        <item>Luxury/Premium</item>
+        <item>Off-Road/Adventure</item>
+    </string-array>
+</resources>

@@ -3,16 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F7F7F7">
-
     <!-- Main content -->
+
+    <!-- Bottom Navigation Card -->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainLayer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#E0E0E0"
-        android:layout_above="@id/bottomNavCard"/>
+        android:layout_height="595dp"
+        android:layout_above="@+id/bottomNavCard"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="33dp"
+        android:layout_marginBottom="-1dp"
+        android:background="#E0E0E0" />
 
-    <!-- Bottom Navigation Card -->
     <androidx.cardview.widget.CardView
         android:id="@+id/bottomNavCard"
         android:layout_width="match_parent"

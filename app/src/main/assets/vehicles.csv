@@ -1,0 +1,17 @@
+Make,Model,Year,Price,Type,Purpose,FuelType,Transmission,Mileage,MinimumDown,MonthlyPayment,Condition,ManufactureCountry,ResaleValue,Seats,EngineCapacity
+Toyota,Land Cruiser 300,2028,95000000,Luxury SUV,Tourism/Business,Diesel,Automatic,8,38000000,890000,New,Japan,Very High,7,3.3
+Toyota,Hilux,2027,45000000,Pickup,Business/Tourism,Diesel,Automatic,12,18000000,420000,New,Thailand,High,5,2.8
+Honda,Vezel e:HEV,2028,25000000,Crossover SUV,Personal/Taxi,Hybrid,Automatic,25,10000000,235000,New,Japan,High,5,1.5
+Toyota,Corolla Cross,2027,28000000,Crossover SUV,Personal/Rental,Hybrid,Automatic,22,11200000,260000,New,Japan,High,5,1.8
+BMW,520d,2028,75000000,Luxury Sedan,Business/Personal,Diesel,Automatic,14,30000000,700000,New,Germany,High,5,2.0
+Suzuki,Swift,2027,12500000,Hatchback,Personal/Taxi,Petrol,Auto/Manual,18,5000000,117000,New,Japan,Medium,5,1.2
+Mercedes-Benz,E200,2028,82000000,Luxury Sedan,Business/Personal,Petrol,Automatic,12,32800000,765000,New,Germany,High,5,2.0
+Toyota,Hiace,2027,35000000,Van,Tourism/Business,Diesel,Automatic,10,14000000,327000,New,Japan,High,15,2.8
+Honda,Civic,2026,21000000,Sedan,Personal/Rental,Petrol,Automatic,15,8400000,196000,New,Japan,Medium,5,1.5
+Nissan,Leaf,2028,18000000,Electric Hatch,Personal/Taxi,Electric,Automatic,N/A,7200000,168000,New,Japan,Medium,5,N/A
+Toyota,Allion,2026,25000000,Sedan,Personal/Taxi,Petrol,Automatic,14,10000000,235000,New,Japan,High,5,1.8
+Mazda,CX-5,2027,32000000,SUV,Personal/Business,Petrol,Automatic,12,12800000,299000,New,Japan,Medium,5,2.5
+Suzuki,Wagon R,2026,9800000,Hatchback,Personal/Taxi,Petrol,Auto/Manual,20,3920000,91500,New,Japan,Medium,5,0.7
+Toyota,Prado,2027,65000000,Premium SUV,Tourism/Business,Diesel,Automatic,10,26000000,607000,New,Japan,Very High,7,2.8
+BMW,X5,2028,88000000,Luxury SUV,Business/Personal,Diesel,Automatic,11,35200000,822000,New,Germany,High,5,3.0
+

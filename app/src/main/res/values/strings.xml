@@ -1,21 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">NextGen Garage</string>
-    <string name="profile">Profile</string>
-    <string name="shop">Shop</string>
-    <string name="home">Home</string>
-    <string name="item_title">Item Title</string>
-    <string name="rs_10_000">Rs. 10,000</string>
-    <string name="marketplace">Marketplace</string>
-    <string name="search_items">Search items...</string>
-    <string name="upload_image">Upload Image</string>
-    <string name="add_item">Add Item</string>
-    <string name="description">Description</string>
-    <string name="price_e_g_rs_1000">Price (e.g., Rs. 1000)</string>
-    <string name="item_name">Item Name</string>
-    <string name="add_new_item">Add New Item</string>
-    <string name="purchased_items">Purchased Items</string>
-    <string name="username_example_user">Username: example_user</string>
-    <string name="upload_profile_image">Upload Profile Image</string>
-    <string name="user_profile">User Profile</string>
-    <string name="your_added_items">Your Added Items</string>
+    <string name="app_name">Fashion Store</string>
+
+    <!-- Vehicle Chat Activity -->
+    <string name="hint_budget">Budget (LKR)</string>
+    <string name="hint_vehicle_type">Vehicle Type</string>
+    <string name="hint_use_case">Use Case</string>
+    <string name="hint_payment_method">Payment Method</string>
+    <string name="btn_get_recommendations">Get Recommendations</string>
+    <string name="error_budget_required">Please enter your budget</string>
+    <string name="error_fields_required">Please fill in all fields</string>
+    <string name="error_ai_not_initialized">AI service is not initialized</string>
+    <string name="error_with_message">Error: %1$s</string>
+    <string name="error_ai_init_failed">Failed to initialize AI service: %1$s</string>
 </resources>
