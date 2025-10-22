@@ -37,6 +37,7 @@
                 <activity android:name=".RegisterActivity" />
                 <activity android:name=".MainActivity" android:exported="true" />
                 <activity android:name=".AddItemActivity" android:exported="true" />
+                <activity android:name=".VehicleDetailsActivity" android:exported="false" />
 
                 <meta-data
                     android:name="preloaded_fonts"
