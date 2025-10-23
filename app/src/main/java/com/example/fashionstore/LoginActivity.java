@@ -2,11 +2,11 @@ package com.example.fashionstore;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -15,11 +15,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
-    public String userName;
     private EditText userNameEditText, passwordEditText;
-    private Button loginButton;
-    private TextView signUpTextView;
     private DatabaseReference databaseReference;
+
+    // Admin credentials
+    private static final String ADMIN_USERNAME = "achira";
+    private static final String ADMIN_PASSWORD = "achira";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,56 +29,85 @@ public class LoginActivity extends AppCompatActivity {
 
         userNameEditText = findViewById(R.id.uUsername);
         passwordEditText = findViewById(R.id.loginPassword);
-        loginButton = findViewById(R.id.loginButton);
-        signUpTextView = findViewById(R.id.navigateSignUp);
+        Button loginButton = findViewById(R.id.loginButton);
+        TextView signUpTextView = findViewById(R.id.navigateSignUp);
 
         // Initialize Firebase Database reference
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
-        loginButton.setOnClickListener(v -> {
-            String userName = userNameEditText.getText().toString().trim();
-            String password = passwordEditText.getText().toString().trim();
-
-            if (userName.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Please enter username and password", Toast.LENGTH_SHORT).show();
-            } else {
-                this.userName = userNameEditText.getText().toString().trim();
-                // Query Firebase for the user
-                databaseReference.orderByChild("userName").equalTo(userName).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-                                String dbPassword = userSnapshot.child("password").getValue(String.class);
-                                String userId = userSnapshot.child("userId").getValue(String.class); // Get user ID
-
-                                if (dbPassword != null && dbPassword.equals(password)) {
-                                    Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    intent.putExtra("username", userName); // Pass username to MainActivity
-                                    intent.putExtra("user_id", userId); // Pass user ID to MainActivity
-                                    startActivity(intent);
-                                    finish();
-                                    return;
-                                }
-                            }
-                            Toast.makeText(LoginActivity.this, "Invalid password", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(LoginActivity.this, "User not found", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Toast.makeText(LoginActivity.this, "Database error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
-
+        loginButton.setOnClickListener(v -> handleLogin());
         signUpTextView.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void handleLogin() {
+        String userName = userNameEditText.getText().toString().trim();
+        String password = passwordEditText.getText().toString().trim();
+
+        if (userName.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, getString(R.string.error_empty_credentials), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // First check hardcoded admin credentials
+        if (userName.equals(ADMIN_USERNAME) && password.equals(ADMIN_PASSWORD)) {
+            loginAsAdmin(userName);
+            return;
+        }
+
+        // If not admin, check regular user
+        checkRegularUser(userName, password);
+    }
+
+    private void loginAsAdmin(String userName) {
+        Toast.makeText(this, getString(R.string.welcome_admin), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, AdminDashboardActivity.class);
+        intent.putExtra("username", userName);
+        intent.putExtra("isAdmin", true);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
+
+    private void checkRegularUser(String userName, String password) {
+        databaseReference.orderByChild("userName").equalTo(userName)
+            .addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (!dataSnapshot.exists()) {
+                        Toast.makeText(LoginActivity.this,
+                            getString(R.string.error_user_not_found),
+                            Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                        String dbPassword = userSnapshot.child("password").getValue(String.class);
+                        String userId = userSnapshot.child("userId").getValue(String.class);
+
+                        if (dbPassword != null && dbPassword.equals(password)) {
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            intent.putExtra("username", userName);
+                            intent.putExtra("user_id", userId);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                            finish();
+                            return;
+                        }
+                    }
+                    Toast.makeText(LoginActivity.this,
+                        getString(R.string.error_invalid_password),
+                        Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(LoginActivity.this,
+                        getString(R.string.error_database, databaseError.getMessage()),
+                        Toast.LENGTH_SHORT).show();
+                }
+            });
     }
 }

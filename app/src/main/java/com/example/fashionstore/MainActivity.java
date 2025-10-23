@@ -72,10 +72,49 @@ public class MainActivity extends AppCompatActivity {
                 filteredList.clear();
 
                 for (DataSnapshot ds : snapshot.getChildren()) {
-                    Item item = ds.getValue(Item.class);
-                    if (item != null) {
+                    try {
+                        Item item = new Item();
                         item.setItemId(ds.getKey());
+
+                        // Get each field with null checks
+                        String name = ds.child("name").getValue(String.class);
+                        String description = ds.child("description").getValue(String.class);
+                        String sellerId = ds.child("sellerId").getValue(String.class);
+                        String imageUrl = ds.child("imageUrl").getValue(String.class);
+                        String brand = ds.child("brand").getValue(String.class);
+                        Boolean approved = ds.child("approved").getValue(Boolean.class);
+                        Boolean visible = ds.child("visible").getValue(Boolean.class);
+                        Long timestamp = ds.child("timestamp").getValue(Long.class);
+
+                        item.setName(name != null ? name : "");
+                        item.setDescription(description != null ? description : "");
+                        item.setSellerId(sellerId != null ? sellerId : "");
+                        item.setImageUrl(imageUrl != null ? imageUrl : "");
+                        item.setBrand(brand != null ? brand : "");
+                        item.setApproved(approved != null ? approved : false);
+                        item.setVisible(visible != null ? visible : false);
+                        item.setTimestamp(timestamp != null ? timestamp : 0L);
+
+                        // Handle price carefully
+                        Object priceObj = ds.child("price").getValue();
+                        if (priceObj instanceof Double) {
+                            item.setPrice((Double) priceObj);
+                        } else if (priceObj instanceof Long) {
+                            item.setPrice(((Long) priceObj).doubleValue());
+                        } else if (priceObj instanceof String) {
+                            try {
+                                item.setPrice(Double.parseDouble((String) priceObj));
+                            } catch (NumberFormatException e) {
+                                item.setPrice(0.0);
+                            }
+                        } else {
+                            item.setPrice(0.0);
+                        }
+
                         itemList.add(item);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        continue;
                     }
                 }
 
@@ -119,5 +158,11 @@ public class MainActivity extends AppCompatActivity {
             View userView = mainLayours.getChildAt(0);
             UserViewHandler.handleImageResult(this, requestCode, resultCode, data, loggedInUserName, userView);
         }
+    }
+
+    public void openEditItemActivity(Item item) {
+        Intent intent = new Intent(this, EditItemActivity.class);
+        intent.putExtra(EditItemActivity.EXTRA_ITEM, item);
+        startActivity(intent);
     }
 }

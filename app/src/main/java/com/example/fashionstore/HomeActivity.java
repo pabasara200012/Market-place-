@@ -115,7 +115,10 @@ public class HomeActivity extends AppCompatActivity {
                     Item item = dataSnapshot.getValue(Item.class);
                     if (item != null) {
                         item.setItemId(dataSnapshot.getKey());
-                        itemList.add(item);
+                        // Only show approved items to regular users
+                        if (item.isApproved()) {
+                            itemList.add(item);
+                        }
                     }
                 }
 

@@ -5,6 +5,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Locale;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -50,14 +51,14 @@ public class VehicleDetailsActivity extends AppCompatActivity {
         if (extras != null) {
             String brand = extras.getString("brand", "");
             String model = extras.getString("model", "");
-            String price = extras.getString("price", "");
+            double price = extras.getDouble("price", 0.0);
             String description = extras.getString("description", "");
             String imageUrl = extras.getString("imageUrl", "");
             sellerId = extras.getString("sellerId", "");
 
             brandText.setText(brand);
             modelText.setText(model);
-            priceText.setText(price);
+            priceText.setText(String.format(Locale.US, "Rs. %.2f", price));
             descriptionText.setText(description);
 
             if (imageUrl != null && !imageUrl.isEmpty()) {

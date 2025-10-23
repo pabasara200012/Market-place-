@@ -1,16 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Nestgen Garage</string>
+    <string name="no_pending_items">No pending items available</string>
+    <string name="error_empty_credentials">Please enter both email and password</string>
+    <string name="error_database">Database error: %1$s</string>
+    <string name="welcome_admin">Welcome, Admin!</string>
+    <string name="error_user_not_found">User not found</string>
+    <string name="login_successful">Login successful</string>
+    <string name="error_invalid_password">Invalid password</string>
+    <string name="username_format">Username: %1$s</string>
+    <string name="manage_user_title">Manage User</string>
+    <string name="manage_user_message">What would you like to do with user %1$s?</string>
+    <string name="delete_user_button">Delete User</string>
+    <string name="user_deleted">User deleted successfully</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="item_name">Item Name</string>
+    <string name="item_description">Description</string>
+    <string name="item_price">Price</string>
 
-    <!-- Vehicle Chat Activity -->
-    <string name="hint_budget">Budget (LKR)</string>
-    <string name="hint_vehicle_type">Vehicle Type</string>
-    <string name="hint_use_case">Use Case</string>
-    <string name="hint_payment_method">Payment Method</string>
-    <string name="btn_get_recommendations">Get Recommendations</string>
-    <string name="error_budget_required">Please enter your budget</string>
-    <string name="error_fields_required">Please fill in all fields</string>
-    <string name="error_ai_not_initialized">AI service is not initialized</string>
-    <string name="error_with_message">Error: %1$s</string>
-    <string name="error_ai_init_failed">Failed to initialize AI service: %1$s</string>
+    <!-- New string resources for items -->
+    <string name="price_format">$%.2f</string>
+    <string name="delete_item_title">Delete Item</string>
+    <string name="delete_item_message">Are you sure you want to delete %1$s?</string>
+    <string name="delete_button_text">Delete</string>
+    <string name="error_generic">Error: %1$s</string>
+    <string name="error_deleting_item">Error deleting item: %1$s</string>
+    <string name="error_title">Error</string>
+    <string name="error_loading_items">Error loading items: %1$s</string>
+    <string name="no_items_found">No items found</string>
+    <string name="status_approved">Approved</string>
+    <string name="status_pending">Pending</string>
+    <string name="show_item_title">Show Item</string>
+    <string name="hide_item_title">Hide Item</string>
+    <string name="show_item_message">Are you sure you want to show this item?</string>
+    <string name="hide_item_message">Are you sure you want to hide this item?</string>
+    <string name="approve_item_title">Approve Item</string>
+    <string name="approve_item_message">Are you sure you want to approve %1$s?</string>
+    <string name="approve_button_text">Approve</string>
+
+    <!-- User management strings -->
+    <string name="no_users_found">No users found</string>
+    <string name="error_loading_users">Error loading users: %1$s</string>
+
+    <!-- Item visibility switch -->
+    <string name="visibility_switch_text">Visible</string>
+
+    <!-- Admin Dashboard strings -->
+    <string name="admin_dashboard_title">Admin Dashboard</string>
+    <string name="admin_stats_format">Total Users: %1$d | Pending: %2$d | Visible: %3$d</string>
+    <string name="tab_pending_items">Pending Items</string>
+    <string name="tab_all_items">All Items</string>
+    <string name="tab_users">Users</string>
+    <string name="logout_button">Logout</string>
+
+    <!-- Admin Profile strings -->
+    <string name="admin_profile_title">Admin Profile</string>
+    <string name="admin_stats_title">Dashboard Statistics</string>
+    <string name="admin_name_format">Name: %1$s</string>
+    <string name="admin_email_format">Email: %1$s</string>
+    <string name="error_loading_profile">Error loading admin profile</string>
+    <string name="admin_name">Name</string>
+    <string name="admin_email">Email</string>
+    <string name="admin_statistics">Statistics</string>
+
+    <!-- Additional string resource -->
+    <string name="no_items">No items available</string>
+    <string name="item_image">Item image</string>
+    <string name="approve">Approve</string>
 </resources>

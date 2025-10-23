@@ -12,7 +12,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -115,8 +116,12 @@ public class AddItemActivity extends AppCompatActivity {
                         for (DataSnapshot ds : snapshot.getChildren()) {
                             Item item = ds.getValue(Item.class);
                             if (item != null) {
-                                item.setItemId(ds.getKey()); // Set the Firebase key as item ID
+                                item.setItemId(ds.getKey());
+                                // Add all items for the seller themselves
                                 itemList.add(item);
+
+                                // Update the approval status display in the adapter
+                                item.setVisible(item.isApproved());
                             }
                         }
                         itemAdapter.notifyDataSetChanged();
@@ -133,20 +138,18 @@ public class AddItemActivity extends AppCompatActivity {
                 });
     }
 
-    private void openImagePicker() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
-        startActivityForResult(intent, 1);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
-            imageUri = data.getData();
-            itemImagePreview.setImageURI(imageUri);
+    private final ActivityResultLauncher<String> imagePickerLauncher = registerForActivityResult(
+        new ActivityResultContracts.GetContent(),
+        result -> {
+            if (result != null) {
+                imageUri = result;
+                itemImagePreview.setImageURI(imageUri);
+            }
         }
+    );
+
+    private void openImagePicker() {
+        imagePickerLauncher.launch("image/*");
     }
 
     private void uploadItem() {
@@ -214,37 +217,61 @@ public class AddItemActivity extends AppCompatActivity {
             return;
         }
 
-        // Create item object
-        Map<String, Object> item = new HashMap<>();
-        item.put("name", name);
-        item.put("brand", brand); // Brand එක ඇතුළත් කරන්න
-        item.put("price", price);
-        item.put("description", description);
-        item.put("imageUrl", imageUrl);
-        item.put("sellerId", currentUserId);
-        item.put("timestamp", System.currentTimeMillis());
+        // Get seller name from Firebase before creating item
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(currentUserId);
+        userRef.get().addOnSuccessListener(dataSnapshot -> {
+            String sellerName = dataSnapshot.child("name").getValue(String.class);
+            if (sellerName == null) {
+                sellerName = "Unknown User";
+            }
 
-        // Save to Firebase Realtime Database
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference();
-        String itemId = db.child("items").push().getKey();
+            // Create item object
+            Map<String, Object> item = new HashMap<>();
+            item.put("name", name);
+            item.put("brand", brand);
+            item.put("price", Double.parseDouble(price)); // Convert price to double
+            item.put("description", description);
+            item.put("imageUrl", imageUrl);
+            item.put("sellerId", currentUserId);
+            item.put("sellerName", sellerName);
+            item.put("timestamp", System.currentTimeMillis());
+            item.put("approved", false);  // New items start as unapproved
+            item.put("visible", false);   // New items start as invisible
 
-        db.child("items").child(itemId).setValue(item)
-                .addOnSuccessListener(aVoid -> {
-                    progressBar.setVisibility(View.GONE);
-                    uploadItemBtn.setEnabled(true);
-                    Toast.makeText(AddItemActivity.this, "Item uploaded successfully", Toast.LENGTH_SHORT).show();
+            // Save to Firebase Realtime Database
+            DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+            String itemId = db.child("items").push().getKey();
 
-                    // Clear form
-                    clearForm();
+            if (itemId != null) {
+                db.child("items").child(itemId).setValue(item)
+                    .addOnSuccessListener(aVoid -> {
+                        progressBar.setVisibility(View.GONE);
+                        uploadItemBtn.setEnabled(true);
+                        Toast.makeText(AddItemActivity.this,
+                            "Item uploaded successfully and waiting for admin approval",
+                            Toast.LENGTH_LONG).show();
 
-                    // Refresh the items list
-                    loadUserItems();
-                })
-                .addOnFailureListener(e -> {
-                    progressBar.setVisibility(View.GONE);
-                    uploadItemBtn.setEnabled(true);
-                    Toast.makeText(AddItemActivity.this, "Failed to upload item: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
+                        // Clear form
+                        clearForm();
+
+                        // Refresh the items list
+                        loadUserItems();
+                    })
+                    .addOnFailureListener(e -> {
+                        progressBar.setVisibility(View.GONE);
+                        uploadItemBtn.setEnabled(true);
+                        Toast.makeText(AddItemActivity.this,
+                            "Failed to upload item: " + e.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                    });
+            }
+        }).addOnFailureListener(e -> {
+            progressBar.setVisibility(View.GONE);
+            uploadItemBtn.setEnabled(true);
+            Toast.makeText(AddItemActivity.this,
+                "Failed to get seller information",
+                Toast.LENGTH_SHORT).show();
+        });
     }
 
     private void clearForm() {

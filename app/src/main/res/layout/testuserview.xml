@@ -134,7 +134,7 @@
                         android:id="@+id/fullNameText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Parves Ahamad"
+                        android:text="Enter your full name"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         android:textColor="#000000" />
@@ -191,7 +191,7 @@
                             android:id="@+id/birthdayText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="05-01-2001"
+                            android:text="01-01-2000"
                             android:textSize="14sp"
                             android:textStyle="bold"
                             android:textColor="#000000" />
@@ -217,7 +217,7 @@
                         android:id="@+id/phoneText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="(+880) 1759263000"
+                        android:text="(+94)703073730"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         android:textColor="#000000" />
@@ -242,7 +242,7 @@
                         android:id="@+id/emailText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="nirobparvesahammad@gmail.com"
+                        android:text="youremail@gmail.com"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         android:textColor="#000000" />
@@ -267,7 +267,7 @@
                         android:id="@+id/locationText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Dhaka, Bangladesh"
+                        android:text="mathara"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         android:textColor="#000000" />
@@ -291,7 +291,7 @@
                         android:id="@+id/usernameText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="parvesahamad"
+                        android:text="Your Full Name"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         android:textColor="#000000" />
@@ -342,7 +342,7 @@
                         android:id="@+id/usernameEditText"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:text="Parves Ahamad"
+                        android:text="Your Full Name"
                         android:background="@drawable/edittext_border1"
                         android:padding="12dp"
                         android:textSize="14sp" />
@@ -367,7 +367,7 @@
                         android:id="@+id/editEmail"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:text="nirobparvesahammad@gmail.com"
+                        android:text="youremail@gmail.com"
                         android:background="@drawable/edittext_border1"
                         android:padding="12dp"
                         android:inputType="textEmailAddress"
@@ -443,7 +443,7 @@
                         android:id="@+id/editBirthday"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:text="05-01-2001"
+                        android:text="05-01-2000"
                         android:background="@drawable/edittext_border1"
                         android:padding="12dp"
                         android:inputType="date"
@@ -471,7 +471,7 @@
                         android:id="@+id/editPhone"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:text="+8801759263000"
+                        android:text="(+94)703073730"
                         android:background="@drawable/edittext_border1"
                         android:padding="12dp"
                         android:inputType="phone"
@@ -497,7 +497,7 @@
                         android:id="@+id/editLocation"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:text="Dhaka, Bangladesh"
+                        android:text="mathara"
                         android:background="@drawable/edittext_border1"
                         android:padding="12dp"
                         android:textSize="14sp" />

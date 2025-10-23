@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import java.util.List;
+import java.util.Locale;
 
 public class VehicleGridAdapter extends BaseAdapter {
     private List<Item> items;
@@ -59,7 +60,8 @@ public class VehicleGridAdapter extends BaseAdapter {
 
         holder.brandText.setText(item.getBrand());
         holder.modelText.setText(item.getName());
-        holder.priceText.setText(item.getPrice());
+        // Format price properly
+        holder.priceText.setText(String.format(Locale.US, "Rs. %.2f", item.getPrice()));
 
         // Load image using Glide
         String imageUrl = item.getImageUrl();
